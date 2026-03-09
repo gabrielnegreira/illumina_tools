@@ -2,8 +2,6 @@
 #SBATCH --ntasks=1 --cpus-per-task=7
 #SBATCH --time=01:00:00
 #SBATCH --job-name=run_fastp
-***REMOVED***
-***REMOVED***
 #SBATCH --mail-type=BEGIN,END,FAIL
 
 #this script takes as input a read1 and optionally a read2 fastq file and clean them using fastp. 

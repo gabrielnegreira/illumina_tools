@@ -4,8 +4,6 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --time=01:00:00
 #SBATCH --job-name=BWA-MEM
-***REMOVED***
-***REMOVED***
 #SBATCH --mail-type=BEGIN,END,FAIL
 
 #this is a simple bash script to run BWA-MEM in the Vlaams supercomputer.
