@@ -49,7 +49,7 @@ echo found ${#read1_files[@]} samples
         sample=${filename%%${READ1_ID}*} 
 
         #find the read 2 file
-        r2=$(find "$INPUTS_DIR" -mindepth 1 -maxdepth 1 -type f -iname "*${sample}*${READ2_ID}*${FILE_EXTENSION}")
+        r2=$(find "$INPUTS_DIR" -mindepth 1 -maxdepth 1 -type f -iname "*${sample}${READ2_ID}*${FILE_EXTENSION}")
         r2=($r2)
         #check if only 1 read2 file was found
         if [ ${#r2[@]} -gt 1 ]; then
