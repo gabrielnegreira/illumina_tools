@@ -17,8 +17,6 @@ Usage: sbatch $(basename "$0") [options]
 
 Required:
   --fastq_dir <path>        Path to the location where the fastq files are.
-  --read1_id <chr>          A string specifying how the Read 1 files are identified. for instance: "_R1".
-  --read2_id <chr>          A string specifying how the Read 2 files are identified. for instance: "_R2". If unset, it will be assumed that the library is SE.
   -h|--help                 Shows this message.
 EOF
   exit 1
@@ -28,22 +26,12 @@ EOF
 
 # Defaults
 FASTQ_DIR=""
-READ1_ID=""
-READ2_ID=""
 
 # Parse
 while [[ $# -gt 0 ]]; do
   case $1 in
     --fastq_dir)
       FASTQ_DIR="$2"
-      shift 2
-      ;;
-    --read1_id)
-      READ1_ID="$2"
-      shift 2
-      ;;
-    --read2_id)
-      READ2_ID="$2"
       shift 2
       ;;
     -h|--help)
@@ -58,15 +46,13 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Validate
-if [[ -z "$FASTQ_DIR" || -z "$READ1_ID" ]]; then
+if [[ -z "$FASTQ_DIR" ]]; then
   echo "ERROR: --fastq_dir, and --read1_id are required" >&2
   usage
 fi
 
 echo ">>> Parameters:"
 echo "    Fastq directory:    $FASTQ_DIR"
-echo "    Read1 id string:    $READ1_ID"
-echo "    Read2 id string:    $READ2_ID"
 echo
 
 #--- actual code ---
