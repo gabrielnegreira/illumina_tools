@@ -96,6 +96,9 @@ for sample_name in ${sample_names[@]}; do
         file_dir=$(  dirname "$file" )
         read_id_and_ext="${file_name##*_}"
         
+        # Normalize .fq to .fastq
+        read_id_and_ext="${read_id_and_ext/.fq/.fastq}"
+
         # Add R prefix only if not already present
         if [[ "$read_id_and_ext" =~ ^R ]]; then
             new_file_name="${sample_name}_${read_id_and_ext}"
