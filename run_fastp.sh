@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-#SBATCH --ntasks=1 --cpus-per-task=7
-#SBATCH --time=01:00:00
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=32G
+#SBATCH --time=02:00:00
 #SBATCH --job-name=run_fastp
 #SBATCH --mail-type=BEGIN,END,FAIL
 
@@ -28,7 +30,9 @@ EOF
 }
 
 # defaults
-N_THREADS=8
+N_THREADS="${SLURM_CPUS_PER_TASK:-16}"
+N_THREADS=4
+
 
 # parse options (note new -l)
 while getopts ":1:2:s:o:t:l:h" opt; do
@@ -110,13 +114,13 @@ if [[ ${READ2+x} ]]; then
           -O "${OUTPUTS_DIR}/${SAMPLE}_R2_clean.fastq.gz" \
           --html "${OUTPUTS_DIR}/${SAMPLE}_report.html" \
           --json "${OUTPUTS_DIR}/${SAMPLE}_report.json" \
-          --dedup --dup_calc_accuracy 6 --thread "$N_THREADS"
+          --dedup --dup_calc_accuracy 3 --thread "$N_THREADS"
 else
     fastp -i "$READ1" \
           -o "${OUTPUTS_DIR}/${SAMPLE}_R1_clean.fastq.gz" \
           --html "${OUTPUTS_DIR}/${SAMPLE}_report.html" \
           --json "${OUTPUTS_DIR}/${SAMPLE}_report.json" \
-          --dedup --dup_calc_accuracy 6 --thread "$N_THREADS"
+          --dedup --dup_calc_accuracy 3 --thread "$N_THREADS"
 fi
 
 
