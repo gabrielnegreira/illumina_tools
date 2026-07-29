@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH --ntasks=1 
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=16
 #SBATCH --time=01:00:00
 #SBATCH --job-name=BWA-MEM
 #SBATCH --mail-type=BEGIN,END,FAIL
@@ -80,7 +80,7 @@ echo
 
 
 #internal variables
-threads=${SLURM_CPUS_PER_TASK:-1}
+threads=${SLURM_CPUS_PER_TASK:-4}
 
 
 #get the modules
