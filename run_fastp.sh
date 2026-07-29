@@ -89,7 +89,7 @@ fi
 
 #get the modules
 module --force purge
-module load calcua/2023a calcua/all
+module load calcua/2026.1 calcua/all
 module load fastp
 
 #run fastqc
